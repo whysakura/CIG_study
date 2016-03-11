@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<title>站位请求显示</title>
+<meta http-equiv='content-type' content='text/html;charset=utf-8'/>
+<!-- <meta http-equiv='refresh' content='3'/> -->
+<style>
+	table{
+		border:1px solid black;
+		border-collapse:collapse;
+	}
+	th,td{
+		height:40px;
+		border:1px solid black;
+		width:100px;
+		text-align:center;
+	}
+	th{
+		background-color:#bED;
+	}
+	div{
+		background-color:red;
+	}
+	#table1{
+		position:absolute;
+	}
+	#table2{
+		margin:0px 0px auto auto;
+		position:relative;
+	}
+</style>
+
+</head>
+<body>
+
+	<table id='table1'>
+
+	</table>
+	<table id='table2'>
+			<tr>
+				<th>小车号</th>
+				<th>提交</th>
+			</tr>
+			{%for i in data%}
+			<tr>
+			<!-- <td>{{forloop.counter0}}</td> -->
+			<td>
+				<select name="cars">
+				<option value="1">小车1</option>
+				<option value="2">小车2</option>
+				<option value="3">小车3</option>
+				</select>
+			</td>
+			<td><input type='button' value='提交' onclick="tijiao({{i.id}},{{forloop.counter0}});"/></td>
+			</tr>
+			{%endfor%}
+
+<!-- 			<form action="/get_car/" method="get" target="_self">
+			<input type="hidden" name='order_number' value="{{i.order_number}}"/>
+			<input type='submit' value='提交'/>
+			</form> -->
+	</table>
+<script>
+	window.onload=function(){
+		setInterval('ref();',3000);
+	}
+	function ref(){
+		var xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+		if (this.readyState==4 && this.status==200){
+			var tab=document.getElementById('table1');
+			
+			var d=xhr.responseText;
+			var dd=eval("("+d+")");
+			console.log(dd);
+			var inn='<tr><th>订单号</th><th>线体号</th><th>站点号</th><th>物料号</th><th>物料名称</th><th>物料类型</th><th>物料数目</th><th>创建时间</th><th>状态</th><th>配送小车</th></tr><tr>';
+			for(var i in dd){
+				inn+='<tr>'+
+				'<td>'+dd[i].order_number+'</td>'+
+				'<td>'+dd[i].line_number+'</td>'+
+				'<td>'+dd[i].line_number__station_number+'</td>'+
+				'<td>'+dd[i].line_number__material_number+'</td>'+
+				'<td>'+dd[i].line_number__material_number__mat_name+'</td>'+
+				'<td>'+dd[i].line_number__material_number__mat_type+'</td>'+
+				'<td>'+dd[i].line_number__material_number__mat_count+'</td>'+
+				'<td>'+dd[i].order_time+'</td>'+
+				'<td>'+dd[i].order_state+'</td>'+
+				'<td>小车'+dd[i].car_number+'</td></tr>'
+			}
+			// console.log(inn);
+			tab.innerHTML=inn;
+			}
+		}
+		xhr.open('GET','/show_data/',true)
+		xhr.send()
+		}
+	function tijiao(k,f){
+		var xhr=new XMLHttpRequest();
+		car_number=document.getElementsByName('cars')[f].value;
+		console.log(car_number,k)
+		data='car_number='+car_number+"&order_id="+k
+		xhr.onreadystatechange=function(){
+		if (this.readyState==4 && this.status==200){
+			console.log(car_number+'车ok')
+			document.getElementsByTagName('input')[f].disabled=true;
+			document.getElementsByName('cars')[f].setAttribute('disabled','disabled')
+			}
+		}
+		xhr.open('POST','/get_car/',true)
+		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+		xhr.send(data)
+	}
+</script>
+</body>
+</html>

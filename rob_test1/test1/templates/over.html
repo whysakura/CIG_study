@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<title>完成订单</title>
+<meta http-equiv='content-type' content='text/html;charset=utf-8'/>
+<meta http-equiv='refresh' content='3'/>
+<style>
+	table{
+		border:1px solid black;
+		border-collapse:collapse;
+	}
+	th,td{
+		height:40px;
+		border:1px solid black;
+		width:100px;
+		text-align:center;
+	}
+	th{
+		background-color:#bED;
+	}
+	#table1{
+		float:left;
+	}
+	#d2{
+		float:center;
+	}
+</style>
+
+</head>
+<body>
+
+	<table id='table1'>
+	<tr>
+		<th>订单号</th>
+		<th>线体号</th>
+		<th>物料号</th>
+		<th>物料名称</th>
+		<th>物料数目</th>
+		<th>创建时间</th>
+		<th>配送小车</th>
+		<th>放料时间</th>
+		<th>完成时间</th>
+		<th>状态</th>
+	</tr>
+	{%for i in data%}
+	<tr>
+		<td>{{i.order_number}}</td>
+		<td>{{i.line_number}}</td>
+		<td>{{i.line_number__material_number}}</td>
+		<td>{{i.line_number__material_number__mat_name}}</td>
+		<td>{{i.line_number__material_number__mat_count}}</td>
+		<td>{{i.order_time}}</td>
+		<td>{{i.car_number}}</td>
+		<td>{{i.down_time}}</td>
+		<td>{{i.finish_time}}</td>
+		<td>{{i.order_state}}</td>
+	</tr>
+	{%endfor%}
+	</table>
+	<div id='d2'>
+	<table id='table2'>
+		<tr>
+			<th>总时间</th>
+		</tr>
+		{%for i in time_cha%}
+		<tr>
+			<td>{{i}}</td>
+		</tr>
+		{%endfor%}
+	</table>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+	<head>
+	<meta http-equiv="refresh" content='3'/>
+	<title>机器1状态显示</title>
+	<style type="text/css">
+		table{
+			width:500px;
+			border-collapse:collapse;
+			margin:0 auto 0 auto
+		}
+		th,td{
+			width:200px;
+			height:30px;
+			border:1px solid blue;
+			text-align:center;
+		}
+		td.err{
+			width:200px;
+			height:30px;
+			border:1px solid blue;
+			text-align:center;
+			background-color:red;
+		}
+		#r1{
+			text-align:center;
+		}
+		</style>
+<!-- 	<script >
+		window.onload=function showtable(){
+			var tablename=document.getElementById('mytable');
+			var li=tablename.getElementsByTagName('tr');
+			for(var i=0;i<=li.length;i++){
+				// if(i==li.length){
+				// 	li[i-1].parentNode.removeChild(li[i-1]);
+				// }
+				if(i%2==0){
+					li[i].style.backgroundColor='#FFB584';
+				}
+				else{
+					li[i].style.backgroundColor='#FFFFFF'
+				}
+			}
+		}
+	</script> -->
+
+	</head>
+	<body>
+	<div id='r1'>机器1</div>
+	<table border="1" id='mytable'>
+	<tr>
+		<th>序号</th>
+		<th>状态</th>
+		<th>时间</th>
+	</tr>
+	{%for i in data1%}
+	<tr>
+		
+		<!-- <td>{{i.id}}</td> -->
+		{%ifequal i.state '0'%}
+		<td class='err'>{{forloop.counter}}</td>
+		<td class='err'>{{i.state}}</td>
+		<td class='err'>{{i.date}}</td>
+		{%else%}
+		<td>{{forloop.counter}}</td>
+		<td>{{i.state}}</td>
+		<td>{{i.date}}</td>
+		{%endifequal%}
+	</tr>
+	{%endfor%}
+	</table>
+	<p>{{idd}}</p>
+	<p>{{err_num}}</p>
+	<p>{{err_rate}}</p>
+	<p>{{data1}}</p>
+	<p>{{data}}</p>
+	</body>
+</html>

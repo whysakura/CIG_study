@@ -1,0 +1,13 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+{%for i in list%}
+<li>{{i}}</li>
+{%endfor%}
+{{request.user}}
+{{request.user.password}}<br/>
+{{request.path}}<br/>
+{{request.GET.urlencode}}<hr/>
+{{request.path}}?{{request.GET.urlencode}}&delect=1<br/>
+{%if request.user.isset %}y
+{%else%}nn<br/>
+{%endif%}
+{{aaa}}

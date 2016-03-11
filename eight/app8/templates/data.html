@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<!-- <meta http-equiv="refresh" content="10"> -->
+	<style type="text/css">
+		*{
+			
+		}
+		table{
+			width:300px;
+			border-collapse:collapse;
+		}
+		th,td{
+			width:50px;
+			height:40px;
+			border:1px solid blue;
+			text-align:center;
+		}
+		#robot1{
+			background:#FFBFFF;
+			width:300px;
+			padding:5px;
+			position:absolute;
+		}
+		#robot2{
+			width:300px;
+			left:340px;
+			padding:5px;
+			background:#FFBBDE;
+			position:absolute;
+		}
+		#robot3{
+			width:300px;
+			left:670px;
+			padding:5px;
+			background:#FFBBBB;
+			position:absolute;
+		}
+		#robot4{
+			width:300px;
+			left:1000px;
+			padding:5px;
+			background:#FFBDBE;
+			position:absolute;
+		}
+		.text,form{
+			text-align:center;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- robot1 -->
+	<div id="robot1">
+		<div class="text">robot1</div>
+		<table border="1">
+		<tr>
+			<th>id</th>
+			<th>state</th>
+			<th>date</th>
+			<th>robot</th>
+		</tr>
+		{%for k in data1%}
+		<tr>
+			
+			<td>{{k.id}}</td>
+			<td>{{k.state}}</td>
+			<td>{{k.date}}</td>
+			<td>{{k.robot}}</td>
+			
+		</tr>
+		{%endfor%}
+		</table>
+		<form action="/return">
+		<input type="submit" value="提交"/>
+		</form>
+	</div>
+
+	<!-- robot2 -->
+	<div id="robot2">
+		<div class="text">robot2</div>
+		<table border="1">
+		<tr>
+			<th>id</th>
+			<th>state</th>
+			<th>date</th>
+			<th>robot</th>
+		</tr>
+		{%for k in data2%}
+		<tr>
+			
+			<td>{{k.id}}</td>
+			<td>{{k.state}}</td>
+			<td>{{k.date}}</td>
+			<td>{{k.robot}}</td>
+			
+		</tr>
+		{%endfor%}
+		</table>
+		<form action="/return">
+		<input type="submit" value="提交"/>
+		</form>
+	</div>
+	<!-- robot3 -->
+	<div id="robot3">
+		<div class="text">robot3</div>
+		<table border="1">
+		<tr>
+			<th>id</th>
+			<th>state</th>
+			<th>date</th>
+			<th>robot</th>
+		</tr>
+		{%for k in data3%}
+		<tr>
+			
+			<td>{{k.id}}</td>
+			<td>{{k.state}}</td>
+			<td>{{k.date}}</td>
+			<td>{{k.robot}}</td>
+			
+		</tr>
+		{%endfor%}
+		</table>
+		<form action="/return">
+		<input type="submit" value="提交"/>
+		</form>
+	</div>
+
+	<!-- robot4 -->
+	<div id="robot4">
+		<div class="text">robot4</div>
+		<table border="1">
+		<tr>
+			<th>id</th>
+			<th>state</th>
+			<th>date</th>
+			<th>robot</th>
+		</tr>
+		{%for k in data4%}
+		<tr>
+			
+			<td>{{k.id}}</td>
+			<td>{{k.state}}</td>
+			<td>{{k.date}}</td>
+			<td>{{k.robot}}</td>
+			
+		</tr>
+		{%endfor%}
+		</table>
+		<form action="/return">
+		<input type="submit" value="提交"/>
+		</form>
+	</div>
+</body>
+</html>
